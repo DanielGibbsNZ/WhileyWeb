@@ -223,7 +223,7 @@ def run(dir):
 # end, as well a the text of the error itself.
 def splitErrors(errors):
     r = []
-    for err in errors.split("\n"):
+    for err in re.findall("^.*\.whiley:[0-9]+:[0-9]+:[0-9]+:\".*\"$", errors, re.DOTALL | re.MULTILINE):
         if err != "":
             r.append(splitError(err))
     return r
